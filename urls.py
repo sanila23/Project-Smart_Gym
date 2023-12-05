@@ -1,27 +1,29 @@
-"""college_grievance_app URL Configuration
+from django.urls import path
+from . import views
+from gym_management_app.settings import DEBUG, STATIC_URL, MEDIA_URL, MEDIA_ROOT
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import path, include
 from django.conf.urls.static import static
-from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', views.index, name = 'index'),
+   	path('admin/', views.adminlogin, name="adminlogin"),
+    path('adminpanel/',views.adminpanel,name="adminpanel"),
+    path('login/', views.login,name='login'),
+    path('member_login/', views.member_login, name="member_login"),
+    path('registration/', views.registration, name="registration"),
+    path('trainer_login/', views.trainer_login, name="trainer_login"),
+    path('logout/', views.logout, name="logout"),
+    path('home/', views.home, name="home"),
+    path('view_bill/', views.view_bill, name="view_bill"),
+ 	path('view_diet/', views.view_diet, name = 'view_diet'),
+    path('view_schedule/', views.view_schedule, name = 'view_schedule'),
+    path('view_store/', views.view_store, name = 'view_store')
     
-    path('', include('gym.urls')),
-    
-]
+          ] 
+urlpatterns += staticfiles_urlpatterns()
+if DEBUG:
+   
+    urlpatterns += static(MEDIA_URL, document_root = MEDIA_ROOT)
+ 

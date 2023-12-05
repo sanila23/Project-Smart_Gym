@@ -25,12 +25,28 @@ def index(request):
 def adminlogin(request):
     return redirect('admin')
 
+def adminpanel(request):
+    return render(request,'adminpanel.html')
+
 
 def member_login(request):
     if request.method == 'POST':
         try:
             user=Member.objects.get(Email = request.POST['Email'],Password= request.POST['Password'])
             return redirect('home')
+            
+        except Member.DoesNotExist:
+            return render (request,'gym/member_login.html', {'error':'Username or password is incorrect!'})
+   
+    else:
+    
+        return render(request, 'gym/member_login.html')
+    
+def login(request):
+    if request.method == 'POST':
+        try:
+            user=Member.objects.get(Email = request.POST['Email'],Password= request.POST['Password'])
+            return redirect('admin')
             
         except Member.DoesNotExist:
             return render (request,'gym/member_login.html', {'error':'Username or password is incorrect!'})
@@ -63,6 +79,16 @@ def registration(request):
                 return redirect('member_login')  
             
     return render(request, 'registration.html')
+
+def trainer_login(request):
+    if request.method == 'POST':
+        try:
+            user = Trainer.objects.get(Email=request.POST['Email'], Password=request.POST['Password'])
+            return redirect('home')
+        except Trainer.DoesNotExist:
+            return render(request, 'gym/trainer_login.html', {'error': 'Username or password is incorrect!'})
+    else:
+        return render(request, 'gym/trainer_login.html')
 
 def view_bill(request):
    

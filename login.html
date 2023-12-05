@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login.css'%}">
+    <title>Login Form</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h2>Login</h2>
+        <form class="login-form"   method="POST" action="/login/"onsubmit="return validateForm()">
+        
+
+            {% csrf_token %}
+            <div>
+            <label for="email">Email</label>
+            {% comment %} <input class="form-input" type="email" name="email" id="email" placeholder="Email" required onchange="validateEmail()" oninput="validateEmail()"> {% endcomment %}
+            <input class="form-input" type="email" name="email" id="email" placeholder="Email">
+            <span class="error-message" id="email-error"></span>
+            </div>
+            <div>
+            <label for="password">Password</label>
+            <input class="form-input" type="password" name="password" id="password" placeholder="Password" required onchange="validatePassword()" oninput="validatePassword()">
+            <span class="error-message" id="password-error"></span>
+            </div>
+            <center><button class="login-button" type="submit">Login</button></center>
+        </form>
+        <center><p class="forgot-password"><a href="{% url 'reset_password' %}">Forgot your password?</a></p></center>
+        <center><p class="registration-link">Don't have an account? <a href="{% url 'registration'%}">Register here</a></p></center>
+    </div>
+    <div class="footer">
+        <!-- Your footer content, which can include links or additional information -->
+    </div>
+    <script>
+        
+        function validateForm() {
+            //validateEmail();
+            validatePassword();
+        
+            // Return true to allow form submission if there are no errors
+            return (
+                //document.getElementById('email-error').textContent === '' &&
+                document.getElementById('password-error').textContent === ''
+            );
+        }
+    </script>        
+</body>
+</html>

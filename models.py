@@ -76,6 +76,16 @@ class Member(models.Model):
 
     def __str__(self):
         return self.Email
+    
+class Trainer(models.Model):
+    Name = models.CharField(max_length = 50)
+    Email = models.CharField(max_length = 30)
+    Password=models.CharField(max_length = 20)
+    Mobile=models.CharField(max_length = 10)
+    Address=models.CharField(max_length = 50)
+
+    def __str__(self):
+        return self.Email
 
 class Diet(models.Model):
     Diet = models.CharField(max_length = 50)
