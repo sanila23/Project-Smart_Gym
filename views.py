@@ -24,6 +24,8 @@ def index(request):
     return render(request, 'gym/index.html')
 def adminlogin(request):
     return redirect('admin')
+
+
 def member_login(request):
     if request.method == 'POST':
         try:
@@ -36,6 +38,31 @@ def member_login(request):
     else:
     
         return render(request, 'gym/member_login.html')
+    
+def registration(request):
+    if request.method == 'POST':
+        username = request.POST.get('username', None)
+        email = request.POST.get('email', None)
+        password = request.POST.get('password', None)
+        confirm_password = request.POST.get('confirm-password', None)
+        # role = CustomUser.CUSTOMER
+        if username and email and password:
+            if CustomUser.objects.filter(email=email,username=username).exists():
+                messages.success(request,("Email is already registered."))
+            
+            elif password!=confirm_password:
+                messages.success(request,("Password's Don't Match, Enter correct Password"))
+            else:
+                user = CustomUser(username=username, email=email)
+                user.set_password(password)  # Set the password securely
+                user.is_active=True
+                user.save()
+                user_profile = ProfileUser(user=user)
+                user_profile.save()
+                # activateEmail(request, user, email)
+                return redirect('member_login')  
+            
+    return render(request, 'registration.html')
 
 def view_bill(request):
    
