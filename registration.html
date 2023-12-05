@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="{% static 'css/registration.css'%}">
+</head>
+<body>
+    <div class="registration-container">
+        
+        <h2><center>Registration</center></h2>
+        <form class="registration-form" action="#" method="POST" onsubmit="return validateForm()">
+            {% csrf_token %}
+            <input class="form-input" type="text" name="username" id="username" placeholder="Username" required oninput="validateUsername()">
+            <span class="error-message" id="username-error"></span>
+            <input class="form-input" type="email" name="email" id="email" placeholder="Email" required oninput="validateEmail()">
+            <span class="error-message" id="email-error"></span>
+            <input class="form-input" type="password" name="password" id="password" placeholder="Password" required oninput="validatePassword()">
+            <span class="error-message" id="password-error"></span>
+            <input class="form-input" type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password" required oninput="validateConfirmPassword()">
+            <span class="error-message" id="confirm-password-error"></span>
+            <button class="register-button" type="submit">SignUp</button>
+        </form>
+        <p class="login-link">Already have an account? <a href="{% url 'member_login' %}">Login here</a></p>
+        
+        <script>
+            function validateUsername() {
+                const username = document.getElementById("username").value;
+                const errorElement = document.getElementById("username-error");
+                if (/[^a-zA-Z]/.test(username)) {
+                    errorElement.innerText = "Username can only contain alphabets";
+                } else {
+                    errorElement.innerText = "";
+                }
+            }
+        
+            function validateEmail() {
+                const email = document.getElementById("email").value;
+                const errorElement = document.getElementById("email-error");
+                if (!/^[a-zA-Z0-9._-]+@(ajce\.com|gmail\.com)$/.test(email)) {
+                    errorElement.innerText = "Invalid email. Use ajce.com or gmail.com";
+                } else {
+                    errorElement.innerText = "";
+                }
+            }
+        
+            function validatePassword() {
+                const password = document.getElementById("password").value;
+                const errorElement = document.getElementById("password-error");
+                const regex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{6,}$/;
+                if (!regex.test(password)) {
+                    errorElement.innerText = "Password must contain at least one lowercase, uppercase, numerical, special character, and be at least 6 characters long";
+                } else {
+                    errorElement.innerText = "";
+                }
+            }
+        
+            function validateConfirmPassword() {
+                const password = document.getElementById("password").value;
+                const confirmPassword = document.getElementById("confirm-password").value;
+                const errorElement = document.getElementById("confirm-password-error");
+                if (password !== confirmPassword) {
+                    errorElement.innerText = "Passwords do not match";
+                } else {
+                    errorElement.innerText = "";
+                }
+            }
+        
+            function validateForm() {
+                // Add any additional validation logic here (if needed)
+                return true; // Return false to prevent form submission
+            }
+        </script>
+        
+        
+        
+</body>
+</html>
