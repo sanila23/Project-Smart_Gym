@@ -4,77 +4,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Page</title>
+    <title>Registration</title>
     <link rel="stylesheet" href="{% static 'css/registration.css'%}">
 </head>
 <body>
-    <div class="registration-container">
-        
-        <h2><center>Registration</center></h2>
-        <form class="registration-form" action="#" method="POST" onsubmit="return validateForm()">
+    <div class="container">
+        <h2>Registration </h2>
+        <form id="registrationForm" action="#" method="post">
             {% csrf_token %}
-            <input class="form-input" type="text" name="username" id="username" placeholder="Username" required oninput="validateUsername()">
-            <span class="error-message" id="username-error"></span>
-            <input class="form-input" type="email" name="email" id="email" placeholder="Email" required oninput="validateEmail()">
-            <span class="error-message" id="email-error"></span>
-            <input class="form-input" type="password" name="password" id="password" placeholder="Password" required oninput="validatePassword()">
-            <span class="error-message" id="password-error"></span>
-            <input class="form-input" type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password" required oninput="validateConfirmPassword()">
-            <span class="error-message" id="confirm-password-error"></span>
-            <button class="register-button" type="submit">SignUp</button>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" oninput="validateUsername()" required>
+                <span id="usernameError" class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" oninput="validateEmail()" required>
+                <span id="emailError" class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" oninput="validatePassword()" required>
+                <span id="passwordError" class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" oninput="validateConfirmPassword()" required>
+                <span id="confirmPasswordError" class="error"></span>
+            </div>
+            <button type="submit">Register</button>
         </form>
         <p class="login-link">Already have an account? <a href="{% url 'member_login' %}">Login here</a></p>
+    </div>
+    <script>
+        function validateUsername() {
+            const username = document.getElementById('username').value;
+            const usernameError = document.getElementById('usernameError');
+            const usernameRegex = /^[a-zA-Z]+$/;
         
-        <script>
-            function validateUsername() {
-                const username = document.getElementById("username").value;
-                const errorElement = document.getElementById("username-error");
-                if (/[^a-zA-Z]/.test(username)) {
-                    errorElement.innerText = "Username can only contain alphabets";
-                } else {
-                    errorElement.innerText = "";
-                }
+            if (!username.match(usernameRegex) || username.length < 6) {
+                usernameError.textContent = 'Username must contain at least 6 alphabetic characters.';
+            } else {
+                usernameError.textContent = '';
             }
+        }        
         
-            function validateEmail() {
-                const email = document.getElementById("email").value;
-                const errorElement = document.getElementById("email-error");
-                if (!/^[a-zA-Z0-9._-]+@(ajce\.com|gmail\.com)$/.test(email)) {
-                    errorElement.innerText = "Invalid email. Use ajce.com or gmail.com";
-                } else {
-                    errorElement.innerText = "";
-                }
+        function validateEmail() {
+            const email = document.getElementById('email').value;
+            const emailError = document.getElementById('emailError');
+            const emailRegex = /^[\w-]+(\.[\w-]+)*@([a-zA-Z]+\.)+[a-zA-Z]{2,7}$/;
+        
+            if (!email.match(emailRegex)) {
+                emailError.textContent = 'Invalid email format.';
+            } else {
+                emailError.textContent = '';
             }
+        }
         
-            function validatePassword() {
-                const password = document.getElementById("password").value;
-                const errorElement = document.getElementById("password-error");
-                const regex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{6,}$/;
-                if (!regex.test(password)) {
-                    errorElement.innerText = "Password must contain at least one lowercase, uppercase, numerical, special character, and be at least 6 characters long";
-                } else {
-                    errorElement.innerText = "";
-                }
+        function validatePassword() {
+            const password = document.getElementById('password').value;
+            const passwordError = document.getElementById('passwordError');
+            const passwordRegex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@#$%^&!])[A-Za-z\d@#$%^&!]{6,}$/;
+        
+            if (!password.match(passwordRegex)) {
+                passwordError.textContent = 'Password must contain one lowercase, one uppercase, one digit, one special character, and be at least 6 characters long.';
+            } else {
+                passwordError.textContent = '';
             }
+        }
         
-            function validateConfirmPassword() {
-                const password = document.getElementById("password").value;
-                const confirmPassword = document.getElementById("confirm-password").value;
-                const errorElement = document.getElementById("confirm-password-error");
-                if (password !== confirmPassword) {
-                    errorElement.innerText = "Passwords do not match";
-                } else {
-                    errorElement.innerText = "";
-                }
+        function validateConfirmPassword() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const confirmPasswordError = document.getElementById('confirmPasswordError');
+        
+            if (password !== confirmPassword) {
+                confirmPasswordError.textContent = 'Passwords do not match.';
+            } else {
+                confirmPasswordError.textContent = '';
             }
+        }
         
-            function validateForm() {
-                // Add any additional validation logic here (if needed)
-                return true; // Return false to prevent form submission
-            }
-        </script>
+        {% comment %} const registrationForm = document.getElementById('registrationForm');
+        registrationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
         
-        
-        
+            // Additional validation can be added here before submitting the form
+            // For example, you can check if all error messages are empty before submission
+            // If everything is valid, you can submit the form using registrationForm.submit();
+        }); {% endcomment %}
+    </script>        
 </body>
 </html>

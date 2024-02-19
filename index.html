@@ -16,7 +16,7 @@
 		<!-- meta character set -->
 		<meta charset="UTF-8">
 		<!-- Site Title -->
-		 <title>Gym Management Django Python App</title>
+		 <title>Smart Gym</title>
  
 		<link href="{% static 'https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700' %}"  rel="stylesheet"> 
 			<!--
@@ -40,7 +40,8 @@
 			    			</div>
 			    		<div class="col-lg-4 menu-top-middle justify-content-center d-flex">
 							<a href="{% static 'index.html">	
-								<img class="img-fluid" src="{% static 'img/logo.png' %}" alt="">	<span style="font-size:20px">Gym Management App</span>
+								<img class="img-fluid" src="{% static 'img/logo.png' %}" alt="">	
+								<span style="font-size:20px">Smart Gym</span>
 							</a>		    			
 			    		</div>
 			    		<div class="col-lg-4 col-sm-4 menu-top-right">
@@ -48,19 +49,43 @@
 			    	</div>
 			    </div>	
 			    	<hr>
-			    <div class="container">	
+			    <div class="container">	<br>
 			    	<div class="row align-items-center justify-content-center d-flex">
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
 				          <li class="menu-active"><a href="#">Home</a></li>
 						  
-				          <li><a href="{% url 'adminlogin' %}">Admin Login</a></li>
+						  <li><a href="{% url 'admin_login' %}">Admin Login</a></li>
 						  
 				          <li><a href="{% url 'member_login' %}">Member Login</a></li>
 
 						  <li><a href="{% url 'registration' %}">Register</a></li>
 						  
 						  <li><a href="{% url 'trainer_login' %}">Trainer Login</a></li>
+
+						  <li><a href="{% url 'consultant_login' %}">Consultant Login</a></li>
+
+
+
+						  <li><a href="./about-us.html">About Us</a></li>
+                <li><a href="./classes.html">Classes</a></li>
+
+
+						  <li><a href="#">Pages</a>
+						  <ul class="dropdown">
+							<li><a href="./about-us.html">About us</a></li>
+							<li><a href="./class-timetable.html">Classes timetable</a></li>
+							<li><a href="./bmi-calculator.html">Bmi calculate</a></li>
+							<li><a href="./team.html">Our team</a></li>
+							<li><a href="./services.html">Services</a></li>
+							<li><a href="./gallery.html">Gallery</a></li>
+							<li><a href="./blog.html">Our blog</a></li>
+							<li><a href="./404.html">404</a></li>
+						</ul>
+					</li>
+					<li><a href="./contact.html">Contact</a></li>
+
+
 
 				        </ul>
 				      </nav><!-- #nav-menu-container -->		    		
@@ -79,7 +104,7 @@
 								Depends on Exercise					
 							</h1>
 							<p class="text-white text-uppercase pt-20 pb-20">
-								Gym management app
+								Gym Management System
 							</p>
 						</div>												
 					</div>
@@ -104,7 +129,7 @@
 								<img class="img-fluid" src="{% static 'img/o1.png' %}" alt="">
 								<h4>Admin Module </h4>
 								<p>
-									Admin can manage the bill receipts, schedules , diet plans etc.
+									Admin can manage the bill receipts, schedules, diet plans etc.
 								</p>
 							</div>
 						</div>
@@ -122,13 +147,17 @@
 								<img class="img-fluid" src="{% static 'img/o3.png' %}" alt="">
 								<h4>Gym Records Manage</h4>
 								<p>
-								This application can be  elaborated by providing supplement store , diet  information, personal training etc.</p>
+								This application can be  elaborated by providing supplement store, diet information, personal training etc.</p>
 							</div>
 						</div>												
 					</div>
 				</div>	
 			</section>
 			<!-- End offer Area -->
+
+
+			
+			
 			
 			<!-- Start convert Area -->
 			<!-- End footer Area -->
@@ -154,6 +183,3 @@
 
 		</body>
 	</html>
-
-
-
