@@ -86,6 +86,16 @@ class Trainer(models.Model):
 
     def __str__(self):
         return self.Email
+    
+class Consultant(models.Model):
+    Name = models.CharField(max_length = 50)
+    Email = models.CharField(max_length = 30)
+    Password=models.CharField(max_length = 20)
+    Mobile=models.CharField(max_length = 10)
+    Address=models.CharField(max_length = 50)
+
+    def __str__(self):
+        return self.Email
 
 class Diet(models.Model):
     Diet = models.CharField(max_length = 50)
@@ -116,3 +126,11 @@ class Store(models.Model):
   
     def __str__(self):
         return self.Product_name
+    
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # Add additional fields if needed
+    # For example: profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+
+    def __str__(self):
+        return self.user.username
