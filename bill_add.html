@@ -1,0 +1,10 @@
+{% extends 'gym/admin_dashboard.html' %}
+
+{% block content %}
+    <h2>Add New Bill</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}

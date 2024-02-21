@@ -11,17 +11,17 @@
             margin: 0;
             padding: 0;
         }
-        
+    
         .navbar {
-            background-color: #333;
+            background-color: skyblue; /* Change background color to sky blue */
             color: #fff;
             padding: 15px;
             text-align: center;
         }
-        
+    
         .sidebar {
-            background-color: #444;
-            color: #fff;
+            background-color: #add8e6; /* Pale blue background color */
+            color: #000; /* Change text color to black */
             width: 250px;
             position: fixed;
             top: 0;
@@ -29,23 +29,23 @@
             height: 100%;
             padding-top: 60px;
         }
-        
+    
         .sidebar a {
             display: block;
             padding: 10px 20px;
-            color: #fff;
+            color: #000; /* Change link text color to black */
             text-decoration: none;
         }
-        
+    
         .sidebar a:hover {
             background-color: #555;
         }
-        
+    
         .content {
             margin-left: 250px;
             padding: 20px;
         }
-        
+    
         /* Responsive styles */
         @media screen and (max-width: 768px) {
             .sidebar {
@@ -57,17 +57,37 @@
                 margin-left: 0;
             }
         }
+        {% block cstyle %}
+        {% endblock %}
     </style>
+    
 </head>
 <body>
     <div class="navbar">
         <h2>Admin Dashboard</h2>
     </div>
     <div class="sidebar">
-        <a href="#"><i class="fas fa-home"></i> Home</a>
-        <a href="/user_list"><i class="fas fa-users"></i> Users</a>
+        <a href="{% url 'admin_dashboard' %}"><i class="fas fa-home"></i> Home</a>
+
+        <a href="/user_list"><i class="fas fa-users"></i> Members</a>
+
+        <a href="/trainer_list"><i class="fas fa-user-tie"></i> Trainers</a>
+
+        <a href="/consultant_list"><i class="fas fa-user-check"></i> Consultants</a>
+
+        <a href="/bill_list"><i class="fas fa-file-invoice-dollar"></i> Bills</a>
+    
+        <a href="/store_list"><i class="fas fa-store-alt"></i> Stores</a>
+    
+        <a href="/schedule_list"><i class="fas fa-calendar-alt"></i> Schedules</a>
+    
+        <a href="/diet_list"><i class="fas fa-utensils"></i> Diets</a>
+
         <a href="#"><i class="fas fa-cog"></i> Settings</a>
-        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
+        <a href="{% url 'index' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
+
     </div>
     <div class="content">
         <h2>Welcome to the Admin Dashboard</h2>

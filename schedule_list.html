@@ -24,22 +24,26 @@
   }
 {% endblock %}
 {% block content %}
-    <h2>Member List</h2>
-    <ul>
-        <table id="customers">
+    <h2>Schedule List</h2>
+    <table id="customers">
+        <thead>
             <tr>
-                <th>Name</th>
-                <th>Email</th>
+                <th>Day Number</th>
+                <th>Schedule For</th>
+                <!-- Add more table headers as needed -->
                 <th>Action</th>
             </tr>
-            {% for user in users %}
-            <tr>
-                <td>{{ user.Name }}</td>
-                <td>{{ user.Email }}</td>
-                <td><a href="{% url 'member_detail' user.pk %}"> View</a></td>
-            </tr>
+        </thead>
+        <tbody>
+            {% for schedule in schedules %}
+                <tr>
+                    <td>{{ schedule.Dayno }}</td>
+                    <td>{{ schedule.Schedule_for }}</td>
+                    <!-- Add more table cells as needed -->
+                    <td><a href="#">View</a></td>
+                </tr>
             {% endfor %}
-        </table>
-    
-    </ul>
+        </tbody>
+    </table>
+    <a href="{% url 'schedule_add' %}">Add New Schedule</a>
 {% endblock %}

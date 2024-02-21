@@ -1,0 +1,10 @@
+{% extends 'gym/admin_dashboard.html' %}
+
+{% block content %}
+    <h2>Trainer List</h2>
+    <ul>
+    {% for trainer in trainers %}
+        <li>{{ trainer.Name }} - {{ trainer.Email }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

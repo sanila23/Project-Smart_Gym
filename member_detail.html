@@ -1,0 +1,15 @@
+{% extends 'gym/admin_dashboard.html' %}
+
+{% block content %}
+    <h2>Member Details</h2>
+    <ul>
+        <li><strong>Name:</strong> {{ member.Name }}</li>
+        <li><strong>Email:</strong> {{ member.Email }}</li>
+        <li><strong>Mobile:</strong> {{ member.Mobile }}</li>
+        <li><strong>Weight:</strong> {{ member.Weight }}</li>
+        <li><strong>Height:</strong> {{ member.Height }}</li>
+        <li><strong>Age:</strong> {{ member.Age }}</li>
+        <li><strong>Address:</strong> {{ member.Address }}</li>
+        <!-- Add more details as needed -->
+    </ul>
+{% endblock %}
