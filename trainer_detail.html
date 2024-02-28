@@ -1,0 +1,59 @@
+{% extends 'gym/admin_dashboard.html' %}
+
+{% block content %}
+    <style>
+        /* CSS for table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: white;
+            color: black;
+        }
+        /* Center the back button */
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button-container a {
+            background-color: #FF6347;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+    </style>
+
+    <h2>Trainer Details</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <td>{{ trainer.Name }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ trainer.Email }}</td>
+        </tr>
+        <tr>
+            <th>Mobile</th>
+            <td>{{ trainer.Mobile }}</td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td>{{ trainer.Address }}</td>
+        </tr>
+        <!-- Add more details as needed -->
+    </table>
+
+    <div class="button-container">
+        <a href="{% url 'trainer_list' %}" style="background-color: #FF6347;">Back</a>
+    </div>
+{% endblock %}
